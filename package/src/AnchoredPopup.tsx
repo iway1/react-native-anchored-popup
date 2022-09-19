@@ -80,12 +80,14 @@ export type AnchoredPopupHandle = {
  *  popupElement={<Text>I appear in the popup! woo!</Text>}
  * />
  */
-export default function AnchoredPopupTouchableOpacity({
+export function AnchoredPopupTouchableOpacity({
   animationDuration = 150,
   mode = 'stick',
   backgroundColor = 'rgba(0,0,0,0.07)',
   onAnchorChange,
   handle,
+  closeOnBackdropPress = true,
+  swipeToClose = true,
   ...props
 }: TouchableOpacityProps & {
   /**
@@ -133,10 +135,20 @@ export default function AnchoredPopupTouchableOpacity({
    *     if(handle.current) handle.current.close();
    * }
    * return <AnchoredPopupTouchableOpacity handle={handle}/>;
-   *
    * ```
    */
   handle?: ReturnType<typeof usePopupHandle>;
+  /**
+   * If enabled, the popup will close when the backdrop is pressed.
+   * @default true
+   */
+  closeOnBackdropPress?: boolean;
+
+  /**
+   * If enabled, the popup can be swiped away.
+   * @default true
+   */
+  swipeToClose?: boolean;
 }) {
   const [visible, setVisible] = useState<boolean>(false);
   const [anchor, setAnchor] = useState<AnchoredPopupAnchor | null>(null);
@@ -212,8 +224,10 @@ export default function AnchoredPopupTouchableOpacity({
             close={close}
             swipeDirection={swipeCloseDirectionVector}
             swipeToCloseAnimation={swipeCloseAnimation}
+            swipeToClose={swipeToClose}
             anchor={anchor ?? anchorCache.current}
             animationDuration={animationDuration}
+            closeOnBackdropPress={closeOnBackdropPress}
             mode={mode}
             backgroundColor={backgroundColor}
             opacityAnimation={opacityAnimation}>
@@ -241,6 +255,8 @@ const AnchoredPopup = gestureHandlerRootHOC(function ({
   backgroundColor,
   animation,
   opacityAnimation,
+  closeOnBackdropPress,
+  swipeToClose,
 }: {
   close: (closeAnimation?: CloseAnimationType) => void;
   children: ReactNode;
@@ -252,6 +268,8 @@ const AnchoredPopup = gestureHandlerRootHOC(function ({
   mode: AnchoredPopupMode;
   backgroundColor: string;
   opacityAnimation: SharedValue<number>;
+  closeOnBackdropPress: boolean;
+  swipeToClose: boolean;
 }) {
   const [height, setHeight] = useState<number>(0);
   const [width, setWidth] = useState<number>(0);
@@ -294,9 +312,9 @@ const AnchoredPopup = gestureHandlerRootHOC(function ({
   >({
     onActive: (event, ctx) => {
       if (ctx.deleted) return;
-      const distance = distanceForCoords(
-        event.translationX,
-        event.translationY,
+      const distance = Math.max(
+        distanceForCoords(event.translationX, event.translationY),
+        1,
       );
       const normalizedX = event.translationX / distance;
       const normalizedY = event.translationY / distance;
@@ -393,7 +411,7 @@ const AnchoredPopup = gestureHandlerRootHOC(function ({
           {backgroundColor},
           animatedBackgroundStyle,
         ]}
-        onPress={() => close('touchoutside')}
+        onPress={closeOnBackdropPress ? () => close('touchoutside') : undefined}
       />
       <Animated.View
         style={[
@@ -409,7 +427,8 @@ const AnchoredPopup = gestureHandlerRootHOC(function ({
         <PanGestureHandler
           activeOffsetX={[-10, 10]}
           activeOffsetY={[-10, 10]}
-          onGestureEvent={swipeToCloseGestureHandler}>
+          onGestureEvent={swipeToCloseGestureHandler}
+          enabled={swipeToClose}>
           <Animated.View>{children}</Animated.View>
         </PanGestureHandler>
       </Animated.View>

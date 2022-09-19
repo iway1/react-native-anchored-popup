@@ -1,5 +1,5 @@
-// pass
-throw new Error('No package exports yet defined.');
-// eslint-disable-next-line eslint-comments/no-unlimited-disable
-//eslint-disable-next-line
-export default {};
+export {default as AnchoredPopupProvider} from './src/AnchoredPopupProvider';
+export {
+  AnchoredPopupTouchableOpacity,
+  usePopupHandle,
+} from './src/AnchoredPopup';
