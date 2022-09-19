@@ -1,0 +1,31 @@
+{
+  "name": "@good-react-native/anchored-popup",
+  "version": "1.0.0",
+  "description": "A slick popup component that expands from the exact position of a users press and can be swiped to close",
+  "main": "index.ts", 
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "p": "npm version patch --force && npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iway1/react-native-anchored-popup.git"
+  },
+  "keywords": [
+    
+  ],
+  "author": "Isaac Way",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iway1/react-native-anchored-popup/issues"
+  },
+  "homepage": "https://github.com/iway1/react-native-anchored-popup#readme",
+  "peerDependencies": {
+    "react": "^17.0.0",
+    "react-native": "^0.62.0",
+    "react-native-reanimated": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/react-native": "^0.69.5"
+  }
+}
