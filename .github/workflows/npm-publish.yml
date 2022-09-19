@@ -18,6 +18,6 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
       - name: Publish with yarn
-        run: yarn publish package --new-version ${{ github.event.release.tag_name }}
+        run: yarn publish package --access public --new-version ${{ github.event.release.tag_name }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
