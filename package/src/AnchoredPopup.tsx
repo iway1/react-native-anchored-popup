@@ -82,11 +82,11 @@ export type AnchoredPopupHandle = {
  */
 export function AnchoredPopupTouchableOpacity({
   animationDuration = 150,
-  mode = 'stick',
   backgroundColor = 'rgba(0,0,0,0.07)',
-  onAnchorChange,
-  handle,
   closeOnBackdropPress = true,
+  handle,
+  mode = 'stick',
+  onAnchorChange,
   swipeToClose = true,
   ...props
 }: TouchableOpacityProps & {
