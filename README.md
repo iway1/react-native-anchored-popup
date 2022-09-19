@@ -25,7 +25,11 @@ This package depends on `react-native-reanimated` for animations and `react-nati
 If you're using expo, you can just do:
 
 ```sh
-expo install @good-react-native/anchored-popup react-native-reanimated react-native-gesture-handler
+expo install react-native-reanimated react-native-gesture-handler
+```
+
+```sh
+yarn add @good-react-native/anchored-popup
 ```
 
 ### Bare Workflow
