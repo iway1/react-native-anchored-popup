@@ -25,7 +25,7 @@ This package depends on `react-native-reanimated` for animations and `react-nati
 If you're using expo, you can just do:
 
 ```sh
-expo install react-native-reanimated react-native-gesture-handler
+npx expo install react-native-reanimated react-native-gesture-handler
 ```
 
 ```sh
