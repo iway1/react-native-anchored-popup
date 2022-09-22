@@ -8,6 +8,7 @@ jobs:
   tsc:
     name: tsc
     runs-on: ubuntu-latest
+    concurrency: 'run'
     steps:
       - uses: actions/checkout@v1
       - name: install node v16
@@ -20,8 +21,10 @@ jobs:
         uses: icrawl/action-tsc@v1
         with:
           project: package
+
   publish-npm:
     runs-on: ubuntu-latest
+    concurrency: 'run'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
