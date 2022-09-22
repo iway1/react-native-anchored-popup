@@ -31,7 +31,7 @@ npx expo install react-native-reanimated react-native-gesture-handler
 And to finish installing `react-native-reanimated`, you'll need to add their babel plugin to your `babel.config.js`:
 
 ```js
-module.exports = function(api) {
+module.exports = function (api) {
   api.cache(true);
   return {
     presets: ['babel-preset-expo'],
@@ -200,6 +200,7 @@ Accepts all [TouchableOpacity](https://reactnative.dev/docs/touchableopacity) pr
 | backgroundColor | No | string | Color of the backdrop that is shown when the popup is shown. | 'rgba(0,0,0,0.07)' |
 | closeOnBackdropPress | No | boolean | Whether the popup should close when the backdrop is pressed. | true |
 | handle | No | MutableObjectRef<AnchoredPopupHandle> | A handle that can be used to close the popup imperatively. | undefined |
-| mode | No | 'stick' \| 'center-x' \| 'center-y' \| 'center' | Determines how the popups final position is calculated. See [modes](#modes) | 'stick' |
+| mode | No | 'stick' \| 'center-x' \| 'center-y' \| 'center' | Determines how the popups final position is calculated. See [mode](#mode) | 'stick' |
 | onAnchorChange | No | (anchor: AnchoredPopupAnchor \| null)=>void | A callback function that is called when the anchor changes in case you want to synchronize other UI changes with the anchored popups. | undefined |
 | swipeToClose | No | boolean | Whether the popup can be swiped to dismiss. | true |
+| openOnEvent | No | 'onPress' \| 'onLongPress' | Which event causes the popup to open. | 'onPress' |

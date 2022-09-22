@@ -28,7 +28,7 @@ export declare type AnchoredPopupHandle = {
  *  <Text>Text Shown in the touchable</Text>
  * </AnchoredPopupTouchableOpacity>
  */
-export declare function AnchoredPopupTouchableOpacity({ animationDuration, backgroundColor, closeOnBackdropPress, handle, mode, onAnchorChange, swipeToClose, ...props }: TouchableOpacityProps & {
+export declare function AnchoredPopupTouchableOpacity({ animationDuration, backgroundColor, closeOnBackdropPress, handle, mode, onAnchorChange, swipeToClose, openOnEvent, ...props }: TouchableOpacityProps & {
     /**
      * ReactNode or render function that will be shown whenever the popup is shown. Required.
      */
@@ -93,6 +93,17 @@ export declare function AnchoredPopupTouchableOpacity({ animationDuration, backg
      * @default true
      */
     swipeToClose?: boolean;
+    /**
+     * Control which gestures open the popup.
+     * @default 'onPress'
+     * @option
+     * 'onPress'
+     * Opens the popup on the 'onPress'.
+     * @option
+     * 'onLongPress'
+     * Opens the popup on the 'onLongPress' event.
+     */
+    openOnEvent?: 'onPress' | 'onLongPress';
 }): JSX.Element;
 /**
  * Creates a handle to interact with the popup imperatively (if you need to close it from the parent).

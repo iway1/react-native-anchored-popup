@@ -90,6 +90,7 @@ export function AnchoredPopupTouchableOpacity({
   mode = 'stick',
   onAnchorChange,
   swipeToClose = true,
+  openOnEvent = 'onPress',
   ...props
 }: TouchableOpacityProps & {
   /**
@@ -155,6 +156,18 @@ export function AnchoredPopupTouchableOpacity({
    * @default true
    */
   swipeToClose?: boolean;
+
+  /**
+   * Control which gestures open the popup.
+   * @default 'onPress'
+   * @option
+   * 'onPress'
+   * Opens the popup on the 'onPress'.
+   * @option
+   * 'onLongPress'
+   * Opens the popup on the 'onLongPress' event.
+   */
+  openOnEvent?: 'onPress' | 'onLongPress';
 }) {
   const [visible, setVisible] = useState<boolean>(false);
   const [anchor, setAnchor] = useState<AnchoredPopupAnchor | null>(null);
@@ -208,19 +221,31 @@ export function AnchoredPopupTouchableOpacity({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  function openWithEvent(e: GestureResponderEvent) {
+    const newAnchor = {
+      x: e.nativeEvent.pageX,
+      y: e.nativeEvent.pageY,
+    };
+    setAnchor(newAnchor);
+    onAnchorChange && onAnchorChange(newAnchor);
+    setVisible(true);
+  }
+
   return (
     <>
       <TouchableOpacity
         {...props}
         onPress={(e: GestureResponderEvent) => {
-          const newAnchor = {
-            x: e.nativeEvent.pageX,
-            y: e.nativeEvent.pageY,
-          };
-          setAnchor(newAnchor);
-          onAnchorChange && onAnchorChange(newAnchor);
-          setVisible(true);
+          if (openOnEvent === 'onPress') {
+            openWithEvent(e);
+          }
           props.onPress && props.onPress(e);
+        }}
+        onLongPress={e => {
+          if (openOnEvent === 'onLongPress') {
+            openWithEvent(e);
+          }
+          props.onLongPress && props.onLongPress(e);
         }}
       />
       {(anchor || visible) && (
