@@ -28,6 +28,15 @@ If you're using expo, you can just do:
 npx expo install react-native-reanimated react-native-gesture-handler
 ```
 
+And to finish installing `react-native-reanimated`, you'll need to add their babel plugin to your `babel.config.js`:
+
+```js
+module.exports = {
+  //...
+  plugins: ['react-native-reanimated/plugin'],
+};
+```
+
 ```sh
 yarn add @good-react-native/anchored-popup
 ```
