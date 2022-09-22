@@ -78,7 +78,9 @@ export type AnchoredPopupHandle = {
  * @example
  * <AnchoredPopupTouchableOpacity
  *  popupElement={<Text>I appear in the popup! woo!</Text>}
- * />
+ * >
+ *  <Text>Text Shown in the touchable</Text>
+ * </AnchoredPopupTouchableOpacity>
  */
 export function AnchoredPopupTouchableOpacity({
   animationDuration = 150,

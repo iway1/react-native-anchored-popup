@@ -24,7 +24,9 @@ export declare type AnchoredPopupHandle = {
  * @example
  * <AnchoredPopupTouchableOpacity
  *  popupElement={<Text>I appear in the popup! woo!</Text>}
- * />
+ * >
+ *  <Text>Text Shown in the touchable</Text>
+ * </AnchoredPopupTouchableOpacity>
  */
 export declare function AnchoredPopupTouchableOpacity({ animationDuration, backgroundColor, closeOnBackdropPress, handle, mode, onAnchorChange, swipeToClose, ...props }: TouchableOpacityProps & {
     /**
