@@ -113,15 +113,19 @@ export function AnchoredPopupTouchableOpacity({
    * Sets the positioning behavior of the popup. Each behavior will open the popup towards the center of the screen, but each option
    * varies slightly in how the final position is calculated.
    * @default 'stick'
-   * @option stick
+   * @option
+   * 'stick'
    * Renders the popup as far as possible towards the center screen while making sure the anchor is still inside the popup view.
    * @option center-x
+   * 'center-x'
    * Renders the popup horizontally in the screen, and renders vertically as far as possible towards the y center while making
    * sure the anchor's y value is still inside the popup view.
    * @option center-y
+   * 'center-y'
    * Renders the popup vertically in the screen, and renders horizontally as far as possible towards the x center while making
    * sure the anchor's x value is still inside the popup view.
    * @option center
+   * 'center'
    * Renders the popup in the center of the screen.
    */
   mode?: AnchoredPopupMode;

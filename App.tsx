@@ -1,3 +1,6 @@
+/**
+ * Demo app for react-native-anchored-popup. Check out /package for package source code.
+ */
 import React, {useState} from 'react';
 import {
   Dimensions,
