@@ -31,9 +31,12 @@ npx expo install react-native-reanimated react-native-gesture-handler
 And to finish installing `react-native-reanimated`, you'll need to add their babel plugin to your `babel.config.js`:
 
 ```js
-module.exports = {
-  //...
-  plugins: ['react-native-reanimated/plugin'],
+module.exports = function(api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: ['react-native-reanimated/plugin'],
+  };
 };
 ```
 
