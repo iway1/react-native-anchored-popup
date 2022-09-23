@@ -241,12 +241,16 @@ export function AnchoredPopupTouchableOpacity({
           }
           props.onPress && props.onPress(e);
         }}
-        onLongPress={e => {
-          if (openOnEvent === 'onLongPress') {
-            openWithEvent(e);
-          }
-          props.onLongPress && props.onLongPress(e);
-        }}
+        onLongPress={
+          openOnEvent == 'onLongPress'
+            ? e => {
+                if (openOnEvent === 'onLongPress') {
+                  openWithEvent(e);
+                }
+                props.onLongPress && props.onLongPress(e);
+              }
+            : props.onLongPress
+        }
       />
       {(anchor || visible) && (
         <Modal transparent visible={visible}>
